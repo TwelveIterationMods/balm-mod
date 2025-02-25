@@ -35,7 +35,7 @@ public record YourRecipe(ResourceLocation identifier, Ingredient ingredient, Ite
 
     @Override
     public ItemStack getResultItem(RegistryAccess registryAccess) {
-        return null;
+        return result;
     }
 
     @Override
