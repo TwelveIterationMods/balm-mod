@@ -2,6 +2,7 @@ package yourname.mods.yourmod.client.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.ChickenModel;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -11,8 +12,8 @@ import yourname.mods.yourmod.entity.YourEntity;
 public class YourEntityRenderer extends MobRenderer<YourEntity, ChickenModel<YourEntity>> {
     private static final ResourceLocation chickenTextures = ResourceLocation.withDefaultNamespace("textures/entity/chicken.png");
 
-    public YourEntityRenderer(EntityRendererProvider.Context context, ChickenModel<YourEntity> model, float shadowSize) {
-        super(context, model, shadowSize);
+    public YourEntityRenderer(EntityRendererProvider.Context context) {
+        super(context, new ChickenModel<>(context.bakeLayer(ModelLayers.CHICKEN)), 1f);
     }
 
     @Override
