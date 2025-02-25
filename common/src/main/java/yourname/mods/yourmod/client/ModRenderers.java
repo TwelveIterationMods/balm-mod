@@ -4,7 +4,9 @@ import net.blay09.mods.balm.api.client.rendering.BalmRenderers;
 import net.minecraft.client.renderer.RenderType;
 import yourname.mods.yourmod.block.ModBlocks;
 import yourname.mods.yourmod.block.entity.ModBlockEntities;
+import yourname.mods.yourmod.client.entity.YourEntityRenderer;
 import yourname.mods.yourmod.client.renderer.blockentity.YourBlockRenderer;
+import yourname.mods.yourmod.entity.ModEntities;
 
 public class ModRenderers {
 
@@ -13,5 +15,6 @@ public class ModRenderers {
         renderers.setBlockRenderType(() -> ModBlocks.yourBlock, RenderType.cutout());
 
         renderers.registerBlockEntityRenderer(ModBlockEntities.yourBlock::get, YourBlockRenderer::new);
+        renderers.registerEntityRenderer(ModEntities.yourEntity::get, YourEntityRenderer::new);
     }
 }
