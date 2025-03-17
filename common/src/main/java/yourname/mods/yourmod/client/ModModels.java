@@ -2,12 +2,12 @@ package yourname.mods.yourmod.client;
 
 import net.blay09.mods.balm.api.DeferredObject;
 import net.blay09.mods.balm.api.client.rendering.BalmModels;
-import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.renderer.block.model.BlockStateModel;
 
 import static yourname.mods.yourmod.YourMod.id;
 
 public class ModModels {
-    public static DeferredObject<BakedModel> customModel;
+    public static DeferredObject<BlockStateModel> customModel;
 
     public static void initialize(BalmModels models) {
         customModel = models.loadModel(id("block/custom_model"));
