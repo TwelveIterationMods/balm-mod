@@ -27,9 +27,6 @@
     ],
     "fabric-datagen": [
       "${group}.${mod_id}.fabric.datagen.ModDataGenerator"
-    ],
-    "modmenu": [
-      "${group}.${mod_id}.fabric.compat.ModMenuIntegration"
     ]
   },
   "mixins": [
