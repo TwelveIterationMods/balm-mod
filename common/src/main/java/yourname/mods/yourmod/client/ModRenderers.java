@@ -8,13 +8,15 @@ import yourname.mods.yourmod.client.entity.YourEntityRenderer;
 import yourname.mods.yourmod.client.renderer.blockentity.YourBlockRenderer;
 import yourname.mods.yourmod.entity.ModEntities;
 
+import static yourname.mods.yourmod.YourMod.id;
+
 public class ModRenderers {
 
     public static void initialize(BalmRenderers renderers) {
         // Note: To support cutout rendering on all loaders, you must additionally specify `"render_type": "minecraft:cutout"` in your block model JSON.
         renderers.setBlockRenderType(() -> ModBlocks.yourBlock, RenderType.cutout());
 
-        renderers.registerBlockEntityRenderer(ModBlockEntities.yourBlock::get, YourBlockRenderer::new);
-        renderers.registerEntityRenderer(ModEntities.yourEntity::get, YourEntityRenderer::new);
+        renderers.registerBlockEntityRenderer(id("your_block"), ModBlockEntities.yourBlock::get, YourBlockRenderer::new);
+        renderers.registerEntityRenderer(id("your_entity"), ModEntities.yourEntity::get, YourEntityRenderer::new);
     }
 }
