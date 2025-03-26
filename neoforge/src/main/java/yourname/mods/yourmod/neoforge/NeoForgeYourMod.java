@@ -11,6 +11,6 @@ public class NeoForgeYourMod {
 
     public NeoForgeYourMod(IEventBus modEventBus) {
         final var context = new NeoForgeLoadContext(modEventBus);
-        Balm.initialize(YourMod.MOD_ID, context, YourMod::initialize);
+        Balm.initializeMod(YourMod.MOD_ID, context, new YourMod());
     }
 }

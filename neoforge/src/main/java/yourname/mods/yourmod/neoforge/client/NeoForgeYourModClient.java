@@ -13,6 +13,6 @@ public class NeoForgeYourModClient {
 
     public NeoForgeYourModClient(IEventBus modEventBus) {
         final var context = new NeoForgeLoadContext(modEventBus);
-        BalmClient.initialize(YourMod.MOD_ID, context, YourModClient::initialize);
+        BalmClient.initializeMod(YourMod.MOD_ID, context, new YourModClient());
     }
 }

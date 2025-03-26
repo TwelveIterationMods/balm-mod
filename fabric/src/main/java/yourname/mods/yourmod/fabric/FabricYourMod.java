@@ -8,6 +8,6 @@ import yourname.mods.yourmod.YourMod;
 public class FabricYourMod implements ModInitializer {
     @Override
     public void onInitialize() {
-        Balm.initialize(YourMod.MOD_ID, EmptyLoadContext.INSTANCE, YourMod::initialize);
+        Balm.initializeMod(YourMod.MOD_ID, EmptyLoadContext.INSTANCE, new YourMod());
     }
 }

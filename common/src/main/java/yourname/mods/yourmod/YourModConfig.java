@@ -17,10 +17,6 @@ public class YourModConfig {
     @Comment("This is an example string list property")
     public List<String> exampleStringList = List.of("Hello", "World");
 
-    public static void initialize() {
-        Balm.getConfig().registerConfig(YourModConfig.class);
-    }
-
     public static YourModConfig getActive() {
         return Balm.getConfig().getActiveConfig(YourModConfig.class);
     }
