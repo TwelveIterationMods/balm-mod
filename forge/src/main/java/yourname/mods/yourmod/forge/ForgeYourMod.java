@@ -7,16 +7,16 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import yourname.mods.yourmod.YourMod;
-import yourname.mods.yourmod.client.YourModClient;
+import yourname.mods.yourmod.forge.client.ForgeYourModClient;
 
 @Mod(YourMod.MOD_ID)
 public class ForgeYourMod {
 
     public ForgeYourMod(FMLJavaModLoadingContext context) {
         final var loadContext = new ForgeLoadContext(context.getModEventBus());
-        Balm.initialize(YourMod.MOD_ID, loadContext, YourMod::initialize);
+        Balm.initializeMod(YourMod.MOD_ID, loadContext, new YourMod());
         if (FMLEnvironment.dist.isClient()) {
-            BalmClient.initialize(YourMod.MOD_ID, loadContext, YourModClient::initialize);
+            BalmClient.initializeMod(YourMod.MOD_ID, loadContext, ForgeYourModClient::initialize);
         }
     }
 
