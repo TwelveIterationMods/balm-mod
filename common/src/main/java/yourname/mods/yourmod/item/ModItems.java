@@ -16,7 +16,7 @@ public class ModItems {
     public static Item yourItem;
 
     public static void initialize(BalmItems items) {
-        items.registerItem((identifier) -> yourItem = new YourItem(itemProperties(identifier)), id("your_item"));
+        items.registerItem((identifier) -> yourItem = new Item(itemProperties(identifier)), id("your_item"));
 
         creativeModeTab = items.registerCreativeModeTab(() -> new ItemStack(yourItem), id(YourMod.MOD_ID));
     }
