@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import yourname.mods.yourmod.api.YourModAPI;
 import yourname.mods.yourmod.block.ModBlocks;
 import yourname.mods.yourmod.item.ModItems;
+import yourname.mods.yourmod.network.ModNetworking;
 
 public class YourMod {
 
@@ -18,6 +19,7 @@ public class YourMod {
         YourModAPI.__setupAPI(new InternalMethodsImpl());
 
         YourModConfig.initialize();
+        ModNetworking.initialize(Balm.getNetworking());
         ModBlocks.initialize(Balm.getBlocks());
         ModItems.initialize(Balm.getItems());
     }
