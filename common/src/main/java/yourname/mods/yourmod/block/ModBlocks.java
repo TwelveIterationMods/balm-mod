@@ -13,7 +13,7 @@ public class ModBlocks {
 
     public static void initialize(BalmBlocks blocks) {
         blocks.register(
-                (identifier) -> yourBlock = new YourBlock(blockProperties(identifier)),
+                (identifier) -> yourBlock = new Block(blockProperties(identifier)),
                 BalmItems::blockItem,
                 id("your_block"));
     }

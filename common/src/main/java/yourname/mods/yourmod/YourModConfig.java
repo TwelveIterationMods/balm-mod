@@ -16,8 +16,4 @@ public class YourModConfig {
     @NestedType(String.class)
     @Comment("This is an example string list property")
     public List<String> exampleStringList = List.of("Hello", "World");
-
-    public static YourModConfig getActive() {
-        return Balm.getConfig().getActiveConfig(YourModConfig.class);
-    }
 }
