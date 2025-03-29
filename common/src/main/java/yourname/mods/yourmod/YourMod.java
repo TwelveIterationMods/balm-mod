@@ -4,7 +4,6 @@ import net.blay09.mods.balm.api.Balm;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import yourname.mods.yourmod.api.YourModAPI;
 import yourname.mods.yourmod.block.ModBlocks;
 import yourname.mods.yourmod.item.ModItems;
 import yourname.mods.yourmod.network.ModNetworking;
@@ -16,8 +15,6 @@ public class YourMod {
     public static final String MOD_ID = "yourmod";
 
     public static void initialize() {
-        YourModAPI.__setupAPI(new InternalMethodsImpl());
-
         YourModConfig.initialize();
         ModNetworking.initialize(Balm.getNetworking());
         ModBlocks.initialize(Balm.getBlocks());
