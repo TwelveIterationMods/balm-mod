@@ -14,9 +14,9 @@ public class ForgeYourMod {
 
     public ForgeYourMod(FMLJavaModLoadingContext context) {
         final var loadContext = new ForgeLoadContext(context.getModEventBus());
-        Balm.initialize(YourMod.MOD_ID, loadContext, YourMod::initialize);
+        Balm.initializeMod(YourMod.MOD_ID, loadContext, YourMod::initialize);
         if (FMLEnvironment.dist.isClient()) {
-            BalmClient.initialize(YourMod.MOD_ID, loadContext, YourModClient::initialize);
+            BalmClient.initializeMod(YourMod.MOD_ID, loadContext, YourModClient::initialize);
         }
     }
 
