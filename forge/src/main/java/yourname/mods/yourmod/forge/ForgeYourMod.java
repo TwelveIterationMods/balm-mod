@@ -1,6 +1,7 @@
 package yourname.mods.yourmod.forge;
 
 import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.balm.api.EmptyLoadContext;
 import net.blay09.mods.balm.api.client.BalmClient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
@@ -13,8 +14,8 @@ import yourname.mods.yourmod.client.YourModClient;
 public class ForgeYourMod {
 
     public ForgeYourMod(FMLJavaModLoadingContext context) {
-        Balm.initialize(YourMod.MOD_ID, YourMod::initialize);
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> BalmClient.initialize(YourMod.MOD_ID, YourModClient::initialize));
+        Balm.initializeMod(YourMod.MOD_ID, EmptyLoadContext.INSTANCE, YourMod::initialize);
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> BalmClient.initializeMod(YourMod.MOD_ID, EmptyLoadContext.INSTANCE, YourModClient::initialize));
     }
 
 }
