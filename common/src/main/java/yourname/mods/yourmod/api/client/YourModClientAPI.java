@@ -1,16 +1,16 @@
 package yourname.mods.yourmod.api.client;
 
-import org.jetbrains.annotations.ApiStatus;
+import java.lang.reflect.InvocationTargetException;
 
 public class YourModClientAPI {
-    private static InternalClientMethods internalMethods;
 
-    /**
-     * Internal use only.
-     */
-    @ApiStatus.Internal
-    public static void __setupAPI(InternalClientMethods internalMethods) {
-        YourModClientAPI.internalMethods = internalMethods;
+    private static final InternalClientMethods __internalMethods;
+
+    static {
+        try {
+            __internalMethods = (InternalClientMethods) Class.forName("yourname.mods.yourmod.client.InternalClientMethodsImpl").getConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
-
 }
