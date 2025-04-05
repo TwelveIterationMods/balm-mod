@@ -12,11 +12,6 @@ on:
         required: true
         type: boolean
         default: true
-      neoforge:
-        description: 'NeoForge'
-        required: true
-        type: boolean
-        default: true
 
 jobs:
   create-release:
@@ -62,9 +57,8 @@ jobs:
             const includes = [...settingsGradle.matchAll(includePattern)].flatMap(match => match[0].match(/['"]([^'"]+)['"]/g).map(item => item.replace(/['"]/g, '')));
             const includeFabric = includes.includes('fabric') && ${{inputs.fabric}};
             const includeForge = includes.includes('forge') && ${{inputs.forge}};
-            const includeNeoForge = includes.includes('neoforge') && ${{inputs.neoforge}};
             return {
-              loader: [includeFabric ? 'fabric' : false, includeForge ? 'forge' : false, includeNeoForge ? 'neoforge' : false].filter(Boolean),
+              loader: [includeFabric ? 'fabric' : false, includeForge ? 'forge' : false].filter(Boolean),
             }
       - name: Preparing publish matrix
         id: set-publish-matrix
@@ -77,13 +71,12 @@ jobs:
             const includes = [...settingsGradle.matchAll(includePattern)].flatMap(match => match[0].match(/['"]([^'"]+)['"]/g).map(item => item.replace(/['"]/g, '')));
             const includeFabric = includes.includes('fabric') && ${{inputs.fabric}};
             const includeForge = includes.includes('forge') && ${{inputs.forge}};
-            const includeNeoForge = includes.includes('neoforge') && ${{inputs.neoforge}};
             const gradleProperties = fs.readFileSync('gradle.properties', 'utf8');
             const curseForgeProjectId = gradleProperties.match(/^(?!#)curseforge_project_id\s*=\s*(.+)/m);
             const modrinthProjectId = gradleProperties.match(/^(?!#)modrinth_project_id\s*=\s*(.+)/m);
             const mavenReleases = gradleProperties.match(/^(?!#)maven_releases\s*=\s*(.+)/m);
             return {
-              loader: ['common', includeFabric ? 'fabric' : false, includeForge ? 'forge' : false, includeNeoForge ? 'neoforge' : false].filter(Boolean),
+              loader: ['common', includeFabric ? 'fabric' : false, includeForge ? 'forge' : false].filter(Boolean),
               site: [curseForgeProjectId ? 'curseforge' : '', modrinthProjectId ? 'modrinth' : '', mavenReleases ? 'publish' : ''].filter(Boolean),
               exclude: [
                 {loader: 'common', site: 'curseforge'},
