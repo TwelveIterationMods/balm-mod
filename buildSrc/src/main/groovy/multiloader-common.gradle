@@ -115,6 +115,7 @@ processResources {
             "discord": discord,
             "issues": issues,
             "sources": sources,
+            "pack_format_number": pack_format_number,
             "balm_version_range": balm_version_range,
             "minimum_balm_version": balm_version_range.replaceAll("[\\[\\])]", "").split(",")[0],
     ]
