@@ -13,7 +13,7 @@ import yourname.mods.yourmod.forge.client.ForgeYourModClient;
 public class ForgeYourMod {
 
     public ForgeYourMod(FMLJavaModLoadingContext context) {
-        final var loadContext = new ForgeLoadContext(context.getModEventBus());
+        final var loadContext = new ForgeLoadContext(context.getModBusGroup());
         Balm.initializeMod(YourMod.MOD_ID, loadContext, new YourMod());
         if (FMLEnvironment.dist.isClient()) {
             BalmClient.initializeMod(YourMod.MOD_ID, loadContext, ForgeYourModClient::initialize);
