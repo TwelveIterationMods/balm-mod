@@ -66,6 +66,7 @@ task curseforge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
         mainFile.addRequirement("balm")
         project.minecraft_versions.split(',').toList().each { mainFile.addGameVersion(it) }
         mainFile.releaseType = "release"
+        project.findProperty("curseforge_environments")?.split(",")?.toList()?.each { mainFile.addEnvironment(it) }
         mainFile.addModLoader("NeoForge")
     }
 }
@@ -91,7 +92,7 @@ configurations {
 }
 
 def neoForgeSnapshotUrl = findProperty("neoforge_snapshot_url")
-if (neoForgeSnapshotUrl != null) {
+if (neoForgeSnapshotUrl != null && !neoForgeSnapshotUrl.isBlank()) {
     repositories {
         maven {
             name 'Maven for NeoForge Snapshots'
