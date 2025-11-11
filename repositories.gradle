@@ -70,7 +70,7 @@ repositories {
     }
 	
 	maven {
-        url "https://maven.siphalor.de/"
+        url = "https://maven.siphalor.de/"
         content {
             includeGroup "de.siphalor"
         }
