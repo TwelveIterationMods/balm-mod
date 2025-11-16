@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="${forge_loader_version_range}"
+loaderVersion="*"
 license="${license}"
 issueTrackerURL="${issues}"
 [[mods]]
@@ -18,7 +18,7 @@ config = "${mod_id}.forge.mixins.json"
 [[dependencies.${mod_id}]]
 modId="forge"
 mandatory=true
-versionRange="${forge_version},"
+versionRange="[${forge_version},)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.${mod_id}]]
