@@ -10,7 +10,7 @@ base {
 }
 
 neoForge {
-    version = libs.versions.neoforge.get()
+    version = libs.neoForge.get().version
     // Automatically enable neoforge AccessTransformers if the file exists
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {

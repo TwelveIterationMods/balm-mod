@@ -2,9 +2,7 @@
 # The Balm version to use. You can find all versions on the Maven: https://maven.twelveiterations.com/service/rest/repository/browse/maven-public/net/blay09/mods/balm-common/
 # Balm versions follow the NeoForge versioning scheme since Minecraft 1.21.
 # For best stability, only use -SNAPSHOT versions if you need access to an unreleased Balm feature.
-balm = "21.10.7+1.21.10"
-neoforge = "neoforge_version = 21.10.1-beta"
-forge = "60.0.0"
+balm = "21.10.8+1.21.10"
 
 [libraries]
 # Common Properties
@@ -25,9 +23,12 @@ balmFabric = { module = "net.blay09.mods:balm-fabric", version.ref = "balm" }
 
 # NeoForge Properties
 
+neoForge = "net.neoforged:neoforge:21.10.52-beta"
+
 
 # Forge Properties
 
+forge = "net.minecraftforge:forge:60.0.20"
 # dependency for temporary hacky fix as suggested by Forge
 joptSimple = "net.sf.jopt-simple:jopt-simple:5.0.4"
 
@@ -43,6 +44,7 @@ fabricLoader = "net.fabricmc:fabric-loader:0.17.3"
 # You can add additional properties here and reference them in your `dependencies.gradle` files.
 mixinLib = "org.spongepowered:mixin:0.8.7"
 modMenu = "com.terraformersmc:modmenu:13.0.2"
+jetbrainsAnnotations = "org.jetbrains:annotations:24.1.0"
 
 
 [plugins]
