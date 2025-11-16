@@ -1,18 +1,20 @@
 plugins {
     id 'multiloader-loader'
-    id 'fabric-loom'
-    id 'net.darkhax.curseforgegradle'
-    id "com.modrinth.minotaur"
+    alias libs.plugins.fabricLoom
+    alias libs.plugins.curseForge
+    alias libs.plugins.modrinth
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.layered {
+    minecraft libs.minecraft
+    mappings loom.layered() {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
+        parchment variantOf(libs.parchment) {
+            artifactType('zip')
+        }
     }
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    modImplementation libs.fabricLoader
+    modImplementation libs.fabricApi
 }
 
 apply from: rootProject.file('repositories.gradle')

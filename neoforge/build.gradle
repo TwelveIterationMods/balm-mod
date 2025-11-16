@@ -1,8 +1,8 @@
 plugins {
     id 'multiloader-loader'
-    id 'net.neoforged.moddev'
-    id 'net.darkhax.curseforgegradle'
-    id "com.modrinth.minotaur"
+    alias libs.plugins.neoModDev
+    alias libs.plugins.curseForge
+    alias libs.plugins.modrinth
 }
 
 base {
@@ -10,17 +10,14 @@ base {
 }
 
 neoForge {
-    version = neoforge_version
+    version = libs.versions.neoforge.get()
     // Automatically enable neoforge AccessTransformers if the file exists
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
 
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
-    }
+    parchment.parchmentArtifact = libs.parchment.get().toString()
 
     runs {
         configureEach {
@@ -95,8 +92,8 @@ def neoForgeSnapshotUrl = findProperty("neoforge_snapshot_url")
 if (neoForgeSnapshotUrl != null && !neoForgeSnapshotUrl.isBlank()) {
     repositories {
         maven {
-            name 'Maven for NeoForge Snapshots'
-            url neoForgeSnapshotUrl
+            name = 'Maven for NeoForge Snapshots'
+            url = neoForgeSnapshotUrl
             content {
                 includeModule('net.neoforged', 'neoforge')
                 includeModule('net.neoforged', 'testframework')

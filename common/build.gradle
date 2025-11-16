@@ -1,6 +1,6 @@
 plugins {
     id 'multiloader-common'
-    id 'net.neoforged.moddev'
+    alias libs.plugins.neoModDev
 }
 
 base {
@@ -14,14 +14,11 @@ neoForge {
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
-    }
+    parchment.parchmentArtifact = libs.parchment.get().toString()
 }
 
 dependencies {
-    compileOnly "org.spongepowered:mixin:$mixin_version"
+    compileOnly libs.mixinLib
 }
 
 apply from: rootProject.file('repositories.gradle')

@@ -1,9 +1,9 @@
 plugins {
     id 'multiloader-loader'
-    id 'net.minecraftforge.gradle' version '[6.0.25,6.2)'
-    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
-    id 'net.darkhax.curseforgegradle'
-    id "com.modrinth.minotaur"
+    alias libs.plugins.forge
+    alias libs.plugins.mixinPlugin
+    alias libs.plugins.curseForge
+    alias libs.plugins.modrinth
 }
 
 mixin {
@@ -18,7 +18,7 @@ jar {
 }
 
 minecraft {
-    mappings channel: 'official', version: minecraft_version
+    mappings channel: 'official', version: libs.minecraft.get().version
 
     reobf = false
 
@@ -77,10 +77,13 @@ minecraft {
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+    def mcVersion = libs.minecraft.get().version
+    def forgeVersion = libs.versions.forge.get()
+    minecraft "net.minecraftforge:forge:${mcVersion}-${forgeVersion}"
+    def mixinVersion = libs.mixinLib.get().version
+    annotationProcessor "org.spongepowered:mixin:${mixinVersion}:processor"
     // temporary hacky fix as suggested by Forge
-    implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+    implementation libs.joptSimple
 }
 
 apply from: rootProject.file('repositories.gradle')
