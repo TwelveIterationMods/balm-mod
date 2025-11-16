@@ -93,7 +93,7 @@ processResources {
             "version": version,
             "group": project.group, //Else we target the task's group.
             "minecraft_version": libs.minecraft.get().version,
-            "forge_loader_version_range": forge_loader_version_range,
+            "forge_loader_version_range": "[${libs.forge.get().version.split('\\.')[0]},)",
             "forge_version": libs.forge.get().version,
             "fabric_api_version": libs.fabricApi.get().version,
             "fabric_loader_version": libs.fabricLoader.get().version,
@@ -124,7 +124,7 @@ processResources {
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
-            version = project.version + (!project.version.endsWith("SNAPSHOT") ? "+" + minecraft_version : "")
+            version = project.version + (!project.version.endsWith("SNAPSHOT") ? "+" + libs.minecraft.get().version : "")
             artifactId "${mod_id.replace('_', '-')}-${project.name}"
             from components.java
         }

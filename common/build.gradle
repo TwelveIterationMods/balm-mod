@@ -4,11 +4,11 @@ plugins {
 }
 
 base {
-    archivesName = "${mod_id}-common-${minecraft_version}"
+    archivesName = "${mod_id}-common-${libs.minecraft.get().version}"
 }
 
 neoForge {
-    neoFormVersion = neo_form_version
+    neoFormVersion = libs.neoForm.get().version
     // Automatically enable AccessTransformers if the file exists
     def at = file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
