@@ -27,6 +27,7 @@ repositories {
         filter { includeGroupAndSubgroups("org.spongepowered") }
     }
     maven {
+        name = 'Twelve Iterations'
         url = "https://maven.twelveiterations.com/repository/maven-public/"
         content {
             includeGroup "net.blay09.mods"
@@ -39,7 +40,7 @@ repositories {
                     url = 'https://maven.parchmentmc.org/'
                 },
                 maven {
-                    name = "NeoForge"
+                    name = 'NeoForge'
                     url = 'https://maven.neoforged.net/releases'
                 }
         )
@@ -125,7 +126,7 @@ publishing {
     publications {
         register('mavenJava', MavenPublication) {
             version = project.version + (!project.version.endsWith("SNAPSHOT") ? "+" + libs.minecraft.get().version : "")
-            artifactId "${mod_id.replace('_', '-')}-${project.name}"
+            artifactId = "${mod_id.replace('_', '-')}-${project.name}"
             from components.java
         }
     }
