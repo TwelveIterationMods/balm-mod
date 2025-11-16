@@ -93,8 +93,9 @@ processResources {
             "version": version,
             "group": project.group, //Else we target the task's group.
             "minecraft_version": libs.minecraft.get().version,
+            "forge_loader_version_range": forge_loader_version_range,
             "forge_version": libs.forge.get().version,
-            "fabric_version": libs.fabricApi.get().version,
+            "fabric_api_version": libs.fabricApi.get().version,
             "fabric_loader_version": libs.fabricLoader.get().version,
             "mod_name": mod_name,
             "mod_main": mod_name.split(/\s+/).collect { word -> word.capitalize() }.join(""),
@@ -102,6 +103,7 @@ processResources {
             "mod_id": mod_id,
             "license": license,
             "description": project.description,
+            "neoforge_loader_version_range": neoforge_loader_version_range,
             "neoforge_version": libs.neoForge.get().version,
             "credits": credits,
             "java_version": java_version,
