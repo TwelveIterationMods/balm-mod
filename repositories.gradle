@@ -1,5 +1,13 @@
 repositories {
     maven {
+        name = 'Twelve Iterations Proxy'
+        url = 'https://maven.twelveiterations.com/repository/maven-proxy/'
+        content {
+            includeGroup 'dev.emi'
+        }
+    }
+
+    maven {
         name = 'CurseMaven'
         url = 'https://www.cursemaven.com'
         content {
@@ -31,24 +39,6 @@ repositories {
         content {
             includeGroup "lol.bai"
             includeGroup "mcp.mobius.waila"
-        }
-    }
-
-    maven {
-        name = 'TerraformersMC'
-        url = 'https://maven.terraformersmc.com/releases'
-        content {
-            includeGroup "com.terraformersmc"
-            includeGroup "dev.emi"
-        }
-    }
-
-    maven {
-        name = "Gserv"
-        url = 'https://jm.gserv.me/repository/maven-public/'
-        content {
-            includeGroup "info.journeymap"
-            includeGroup "mysticdrew"
         }
     }
 
