@@ -24,12 +24,12 @@ side="BOTH"
 [[dependencies.${mod_id}]]
 modId="minecraft"
 mandatory=true
-versionRange="${minecraft_version}"
+versionRange="[${minecraft_version},)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.${mod_id}]]
 modId="balm"
 mandatory=true
-versionRange="${balm_version},"
+versionRange="[${balm_version},)"
 ordering="NONE"
 side="BOTH"
