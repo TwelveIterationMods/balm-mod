@@ -82,8 +82,6 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mcVersion}-${forgeVersion}"
     def mixinVersion = libs.mixinLib.get().version
     annotationProcessor "org.spongepowered:mixin:${mixinVersion}:processor"
-    // temporary hacky fix as suggested by Forge
-    implementation libs.joptSimple
 }
 
 apply from: rootProject.file('repositories.gradle')
