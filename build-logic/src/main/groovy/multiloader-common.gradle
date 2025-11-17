@@ -103,7 +103,6 @@ processResources {
             "mod_id": mod_id,
             "license": license,
             "description": project.description,
-            "neoforge_loader_version_range": neoforge_loader_version_range,
             "neoforge_version": libs.neoForge.get().version,
             "credits": credits,
             "java_version": java_version,
