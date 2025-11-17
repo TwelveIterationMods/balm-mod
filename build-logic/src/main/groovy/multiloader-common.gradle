@@ -111,7 +111,7 @@ processResources {
             "issues": issues,
             "sources": sources,
             "pack_format_number": pack_format_number,
-            "balm_version": libs.versions.balm.get(),
+            "balm_version": libs.versions.balm.get().split('\\+')[0],
     ]
 
     filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
