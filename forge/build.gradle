@@ -1,9 +1,9 @@
 plugins {
     id 'multiloader-loader'
-    id 'net.minecraftforge.gradle' version '[6.0.25,6.2)'
-    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
-    id 'net.darkhax.curseforgegradle'
-    id "com.modrinth.minotaur"
+    alias libs.plugins.forge
+    alias libs.plugins.mixinPlugin
+    alias libs.plugins.curseForge
+    alias libs.plugins.modrinth
 }
 
 mixin {
@@ -18,7 +18,7 @@ jar {
 }
 
 minecraft {
-    mappings channel: 'official', version: minecraft_version
+    mappings channel: 'official', version: libs.minecraft.get().version
 
     reobf = false
 
@@ -77,10 +77,11 @@ minecraft {
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
-    // temporary hacky fix as suggested by Forge
-    implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+    def mcVersion = libs.minecraft.get().version
+    def forgeVersion = libs.forge.get().version
+    minecraft "net.minecraftforge:forge:${mcVersion}-${forgeVersion}"
+    def mixinVersion = libs.mixinLib.get().version
+    annotationProcessor "org.spongepowered:mixin:${mixinVersion}:processor"
 }
 
 apply from: rootProject.file('repositories.gradle')
@@ -106,10 +107,10 @@ task curseforge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
         projectId != null
     }
     if (projectId) {
-        def mainFile = upload(findProperty("curseforge_project_id"), file("${project.buildDir}/libs/${archivesBaseName}-${version}.jar"))
+        def mainFile = upload(findProperty("curseforge_project_id"), file("${project.buildDir}/libs/${base.archivesName}-${version}.jar"))
         mainFile.changelog = rootProject.file('CHANGELOG.md').text
         mainFile.addRequirement("balm")
-        project.minecraft_versions.split(',').toList().each { mainFile.addGameVersion(it) }
+        mainFile.addGameVersion(libs.minecraft.get().version)
         mainFile.releaseType = "release"
         project.findProperty("curseforge_environments")?.split(",")?.toList()?.each { mainFile.addEnvironment(it) }
     }
@@ -119,10 +120,10 @@ modrinth {
     token = project.findProperty("modrinth.token") ?: System.getenv("MODRINTH_TOKEN") ?: "none"
     projectId = findProperty("modrinth_project_id")
     versionType = "release"
-    versionNumber = project.version + "+forge-" + project.minecraft_version
+    versionNumber = project.version + "+forge-" + libs.minecraft.get().version
     uploadFile = jar
     changelog = rootProject.file("CHANGELOG.md").text
-    gameVersions = project.minecraft_versions.split(',').toList()
+    gameVersions = [libs.minecraft.get().version]
     syncBodyFrom = rootProject.file("modpage.md").text
     loaders = ['forge']
     dependencies {
