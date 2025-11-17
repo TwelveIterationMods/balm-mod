@@ -15,6 +15,6 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
-        valueLookupBuilder(ModBlockTags.YOUR_TAG).add(ModBlocks.yourBlock);
+        valueLookupBuilder(ModBlockTags.YOUR_TAG).add(ModBlocks.yourBlock.asBlock());
     }
 }

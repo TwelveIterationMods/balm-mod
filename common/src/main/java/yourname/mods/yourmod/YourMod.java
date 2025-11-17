@@ -1,10 +1,11 @@
 package yourname.mods.yourmod;
 
 import net.blay09.mods.balm.api.Balm;
-import net.blay09.mods.balm.api.block.BalmBlocks;
 import net.blay09.mods.balm.api.config.BalmConfig;
-import net.blay09.mods.balm.api.item.BalmItems;
 import net.blay09.mods.balm.api.module.BalmModule;
+import net.blay09.mods.balm.world.item.BalmCreativeModeTabRegistrar;
+import net.blay09.mods.balm.world.item.BalmItemRegistrar;
+import net.blay09.mods.balm.world.level.block.BalmBlockRegistrar;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ public class YourMod implements BalmModule {
     }
 
     public static YourModConfig config() {
-        return Balm.getConfig().getActiveConfig(YourModConfig.class);
+        return Balm.config().getActiveConfig(YourModConfig.class);
     }
 
     @Override
@@ -31,13 +32,18 @@ public class YourMod implements BalmModule {
     }
 
     @Override
-    public void registerBlocks(BalmBlocks blocks) {
+    public void registerBlocks(BalmBlockRegistrar blocks) {
         ModBlocks.initialize(blocks);
     }
 
     @Override
-    public void registerItems(BalmItems items) {
+    public void registerItems(BalmItemRegistrar items) {
         ModItems.initialize(items);
+    }
+
+    @Override
+    public void registerCreativeModeTabs(BalmCreativeModeTabRegistrar creativeModeTabs) {
+        ModItems.initialize(creativeModeTabs);
     }
 
     @Override

@@ -1,19 +1,29 @@
 package yourname.mods.yourmod.item;
 
-import net.blay09.mods.balm.api.item.BalmItems;
+import net.blay09.mods.balm.world.item.BalmCreativeModeTabRegistrar;
+import net.blay09.mods.balm.world.item.BalmItemRegistrar;
+import net.blay09.mods.balm.world.item.DeferredItem;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import yourname.mods.yourmod.YourMod;
 
-import static net.blay09.mods.balm.api.item.BalmItems.itemProperties;
 import static yourname.mods.yourmod.YourMod.id;
 
 public class ModItems {
-    public static Item yourItem;
+    public static DeferredItem yourItem;
 
-    public static void initialize(BalmItems items) {
-        items.registerItem((identifier) -> ModItems.yourItem = new Item(itemProperties(identifier)), id("your_item"));
-        items.registerCreativeModeTab(() -> new ItemStack(ModItems.yourItem), id(YourMod.MOD_ID));
+    public static void initialize(BalmItemRegistrar items) {
+        yourItem = items.register("your_item", Item::new).asDeferredItem();
+    }
+
+    public static void initialize(BalmCreativeModeTabRegistrar creativeModeTabs) {
+        creativeModeTabs.register(YourMod.MOD_ID, builder ->
+                builder.title(Component.translatable(id(YourMod.MOD_ID).toLanguageKey("itemGroup")))
+                        .icon(() -> ModItems.yourItem.createStack())
+                        .displayItems((displayParameters, output) -> {
+                            output.accept(ModItems.yourItem);
+                        })
+        );
     }
 
 }

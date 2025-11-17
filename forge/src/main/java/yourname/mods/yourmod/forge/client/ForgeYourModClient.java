@@ -1,12 +1,12 @@
 package yourname.mods.yourmod.forge.client;
 
-import net.blay09.mods.balm.api.client.BalmClient;
+import net.blay09.mods.balm.client.BalmClientRegistrars;
 import yourname.mods.yourmod.client.YourModClient;
 
 public class ForgeYourModClient {
 
-    public static void initialize() {
-        BalmClient.registerModule(new YourModClient());
+    public static void initialize(BalmClientRegistrars registrars) {
+        registrars.registerModule(new YourModClient());
     }
 
 }

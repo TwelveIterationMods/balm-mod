@@ -1,21 +1,15 @@
 package yourname.mods.yourmod.block;
 
-import net.blay09.mods.balm.api.block.BalmBlocks;
-import net.blay09.mods.balm.api.item.BalmItems;
+import net.blay09.mods.balm.world.level.block.BalmBlockRegistrar;
+import net.blay09.mods.balm.world.level.block.DeferredBlock;
 import net.minecraft.world.level.block.Block;
-
-import static net.blay09.mods.balm.api.block.BalmBlocks.blockProperties;
-import static yourname.mods.yourmod.YourMod.id;
 
 public class ModBlocks {
 
-    public static Block yourBlock;
+    public static DeferredBlock yourBlock;
 
-    public static void initialize(BalmBlocks blocks) {
-        blocks.register(
-                (identifier) -> yourBlock = new Block(blockProperties(identifier)),
-                BalmItems::blockItem,
-                id("your_block"));
+    public static void initialize(BalmBlockRegistrar blocks) {
+        yourBlock = blocks.register("your_block", Block::new, it -> it.strength(1.5f)).withDefaultItem().asDeferredBlock();
     }
 
 }
