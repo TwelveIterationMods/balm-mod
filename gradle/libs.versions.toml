@@ -45,7 +45,6 @@ fabricLoader = { module = "net.fabricmc:fabric-loader", version = "0.17.3" }
 
 # You can add additional properties here and reference them in your `dependencies.gradle` files.
 mixinLib = { module = "org.spongepowered:mixin", version = "0.8.7" }
-modMenu = { module = "com.terraformersmc:modmenu", version = "13.0.2" }
 jetbrainsAnnotations = { module = "org.jetbrains:annotations", version = "24.1.0" }
 
 
