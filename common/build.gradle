@@ -1,10 +1,6 @@
 plugins {
     id 'multiloader-common'
-    alias libs.plugins.neoModDev
-}
-
-base {
-    archivesName = "${mod_id}-common-${libs.minecraft.get().version}"
+    alias libs.plugins.modDevGradle
 }
 
 neoForge {
@@ -18,7 +14,7 @@ neoForge {
 }
 
 dependencies {
-    compileOnly libs.mixinLib
+    compileOnly libs.mixin
 }
 
 apply from: rootProject.file('repositories.gradle')
@@ -53,10 +49,21 @@ artifacts {
     commonGeneratedResources sourceSets.generated.resources.sourceDirectories.singleFile
 }
 
-sourceSets {
-    main {
-        java {
-            srcDir 'src/shell/java'
+// Implement mcgradleconventions loader attribute
+def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
+    configurations.named("$variant") {
+        attributes {
+            attribute(loaderAttribute, 'common')
+        }
+    }
+}
+sourceSets.configureEach {
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant->
+        configurations.named("$variant") {
+            attributes {
+                attribute(loaderAttribute, 'common')
+            }
         }
     }
 }

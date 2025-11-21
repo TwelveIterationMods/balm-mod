@@ -1,12 +1,12 @@
 package yourname.mods.yourmod;
 
-import net.blay09.mods.balm.api.Balm;
-import net.blay09.mods.balm.api.config.BalmConfig;
-import net.blay09.mods.balm.api.module.BalmModule;
+import net.blay09.mods.balm.Balm;
+import net.blay09.mods.balm.platform.config.BalmConfig;
+import net.blay09.mods.balm.platform.module.BalmModule;
 import net.blay09.mods.balm.world.item.BalmCreativeModeTabRegistrar;
 import net.blay09.mods.balm.world.item.BalmItemRegistrar;
 import net.blay09.mods.balm.world.level.block.BalmBlockRegistrar;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yourname.mods.yourmod.block.ModBlocks;
@@ -18,8 +18,8 @@ public class YourMod implements BalmModule {
 
     public static final String MOD_ID = "yourmod";
 
-    public static ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    public static Identifier id(String path) {
+        return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
 
     public static YourModConfig config() {
@@ -47,7 +47,7 @@ public class YourMod implements BalmModule {
     }
 
     @Override
-    public ResourceLocation getId() {
+    public Identifier getId() {
         return id("common");
     }
 

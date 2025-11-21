@@ -5,7 +5,6 @@ plugins {
 
 base {
     archivesName = "${mod_id}-${project.name}-${libs.minecraft.get().version}"
-    version = project.version
 }
 
 java {
@@ -26,13 +25,6 @@ repositories {
         }
         filter { includeGroupAndSubgroups("org.spongepowered") }
     }
-    maven {
-        name = 'Twelve Iterations'
-        url = "https://maven.twelveiterations.com/repository/maven-public/"
-        content {
-            includeGroup "net.blay09.mods"
-        }
-    }
     exclusiveContent {
         forRepositories(
                 maven {
@@ -48,16 +40,14 @@ repositories {
     }
 }
 
-dependencies {
-    implementation libs.jetbrainsAnnotations
-}
-
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
     configurations."$variant".outgoing {
-        capability("$group:${mod_id.replace('_', '-')}-${project.name}:$version")
-        capability("$group:${mod_id.replace('_', '-')}:$version")
+        capability("$group:${project.name}:$version")
+        capability("$group:${base.archivesName.get()}:$version")
+        capability("$group:$mod_id-${project.name}-${libs.minecraft.get().version}:$version")
+        capability("$group:$mod_id:$version")
     }
     publishing.publications.configureEach {
         suppressPomMetadataWarningsFor(variant)
@@ -93,7 +83,7 @@ processResources {
     def expandProps = [
             "version": version,
             "group": project.group, //Else we target the task's group.
-            "minecraft_version": libs.minecraft.get().version,
+            "minecraft_version": libs.minecraft.get().version.replace('-pre', '-beta.'),
             "forge_version": libs.forge.get().version,
             "fabric_api_version": libs.fabricApi.get().version,
             "fabric_loader_version": libs.fabricLoader.get().version,
@@ -114,16 +104,25 @@ processResources {
             "balm_version": libs.versions.balm.get().split('\\+')[0],
     ]
 
-    filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
+    def jsonExpandProps = expandProps.collectEntries {
+        key, value -> [(key): value instanceof String ? value.replace("\n", "\\\\n") : value]
+    }
+
+    filesMatching(['META-INF/mods.toml', 'META-INF/neoforge.mods.toml']) {
         expand expandProps
     }
+
+    filesMatching(['pack.mcmeta', 'fabric.mod.json', '*.mixins.json']) {
+        expand jsonExpandProps
+    }
+
     inputs.properties(expandProps)
 }
 
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
-            version = project.version + (!project.version.endsWith("SNAPSHOT") ? "+" + libs.minecraft.get().version : "")
+            version = project.version
             artifactId = "${mod_id.replace('_', '-')}-${project.name}"
             from components.java
         }
