@@ -20,18 +20,18 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "${group}.${mod_id}.fabric.Fabric${mod_main}"
+      "yourname.mods.yourmod.fabric.FabricYourMod"
     ],
     "client": [
-      "${group}.${mod_id}.fabric.client.Fabric${mod_main}Client"
+      "yourname.mods.yourmod.fabric.client.FabricYourModClient"
     ],
     "fabric-datagen": [
-      "${group}.${mod_id}.fabric.datagen.ModDataGenerator"
+      "yourname.mods.yourmod.fabric.datagen.ModDataGenerator"
     ]
   },
   "mixins": [
-    "${mod_id}.mixins.json",
-    "${mod_id}.fabric.mixins.json"
+    "yourmod.mixins.json",
+    "yourmod.fabric.mixins.json"
   ],
   "depends": {
     "java": ">=${java_version}",

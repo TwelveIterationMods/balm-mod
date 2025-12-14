@@ -1,18 +1,14 @@
 package yourname.mods.yourmod;
 
 import net.blay09.mods.balm.Balm;
-import net.blay09.mods.balm.platform.config.BalmConfig;
-import net.blay09.mods.balm.platform.module.BalmModule;
-import net.blay09.mods.balm.world.item.BalmCreativeModeTabRegistrar;
-import net.blay09.mods.balm.world.item.BalmItemRegistrar;
-import net.blay09.mods.balm.world.level.block.BalmBlockRegistrar;
+import net.blay09.mods.balm.core.BalmRegistrars;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yourname.mods.yourmod.block.ModBlocks;
 import yourname.mods.yourmod.item.ModItems;
 
-public class YourMod implements BalmModule {
+public class YourMod {
 
     public static final Logger logger = LoggerFactory.getLogger(YourMod.class);
 
@@ -26,29 +22,12 @@ public class YourMod implements BalmModule {
         return Balm.config().getActiveConfig(YourModConfig.class);
     }
 
-    @Override
-    public void registerConfig(BalmConfig config) {
-        config.registerConfig(YourModConfig.class);
-    }
+    public static void initialize(BalmRegistrars registrars) {
+        Balm.config().registerConfig(YourModConfig.class);
 
-    @Override
-    public void registerBlocks(BalmBlockRegistrar blocks) {
-        ModBlocks.initialize(blocks);
-    }
-
-    @Override
-    public void registerItems(BalmItemRegistrar items) {
-        ModItems.initialize(items);
-    }
-
-    @Override
-    public void registerCreativeModeTabs(BalmCreativeModeTabRegistrar creativeModeTabs) {
-        ModItems.initialize(creativeModeTabs);
-    }
-
-    @Override
-    public Identifier getId() {
-        return id("common");
+        registrars.blocks(ModBlocks::initialize);
+        registrars.items(ModItems::initialize);
+        registrars.creativeModeTabs(ModItems::initialize);
     }
 
 }

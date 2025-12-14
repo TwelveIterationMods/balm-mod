@@ -9,6 +9,6 @@ import yourname.mods.yourmod.client.YourModClient;
 public class FabricYourModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        BalmClient.initializeMod(YourMod.MOD_ID, FabricLoadContext.INSTANCE, new YourModClient());
+        BalmClient.initializeMod(YourMod.MOD_ID, FabricLoadContext.INSTANCE, YourModClient::initialize);
     }
 }

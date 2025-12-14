@@ -5,12 +5,12 @@ minecraft = "1.21.11"
 # See https://projects.neoforged.net/neoforged/neoform
 neoForm = "1.21.11-20251209.172050"
 # See https://projects.neoforged.net/neoforged/neoforge
-neoForge = "21.11.0-beta"
+neoForge = "21.11.6-beta"
 # See https://files.minecraftforge.net
-forge = "60.0.20"
+forge = "61.0.2"
 # See https://fabricmc.net/develop/
-fabricApi = "0.139.4+1.21.11"
-fabricLoader = "0.18.1"
+fabricApi = "0.139.5+1.21.11"
+fabricLoader = "0.18.2"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }

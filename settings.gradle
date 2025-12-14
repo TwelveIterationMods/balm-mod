@@ -44,4 +44,7 @@ plugins {
 }
 
 includeBuild('build-logic')
-include('common', 'neoforge', 'fabric')
+include('common')
+include('neoforge')
+include('fabric')
+include('forge')

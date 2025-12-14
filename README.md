@@ -25,9 +25,15 @@ to make updating to newer versions of the template easier.
 
 ### gradle.properties
 
-Configure the mod's metadata as well as any mod loader or dependency versions in this file.
+Configure your mod's metadata in this file.
 
-Ideally, you should never make changes to `build.gradle` directly.
+### <loader>/dependencies.gradle
+
+In these files, you can specify additional dependencies. You'll find Balm in there as well. 
+
+### gradle/libs.versions.toml
+
+This is a version catalog, specifying the versions of Balm, mod loaders, and Gradle plugins.
 
 ### CHANGELOG.md
 
@@ -39,14 +45,10 @@ You should replace this file with a license of your choice.
 
 Unless you fully understand the implications of the license you choose, you should keep this as All Rights Reserved.
 
-### modpage.md
-
-This is used for Modrinth's `modrinthSyncBody` gradle task, updating the Modrinth project page to match the Markdown
-file.
-
 ### repositories.gradle
 
 This is where Maven repositories for fetching dependencies are configured.
+
 It is good practice to filter each repository to only the groups you expect to download from them.
 
 ## Contributing

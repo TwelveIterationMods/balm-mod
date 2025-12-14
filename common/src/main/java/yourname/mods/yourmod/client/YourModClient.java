@@ -1,19 +1,10 @@
 package yourname.mods.yourmod.client;
 
-import net.blay09.mods.balm.client.platform.module.BalmClientModule;
-import net.blay09.mods.balm.client.BalmKeyMappingRegistrar;
-import net.minecraft.resources.Identifier;
+import net.blay09.mods.balm.client.BalmClientRegistrars;
 
-import static yourname.mods.yourmod.YourMod.id;
+public class YourModClient {
 
-public class YourModClient implements BalmClientModule {
-    @Override
-    public Identifier getId() {
-        return id("client");
-    }
-
-    @Override
-    public void registerKeyMappings(BalmKeyMappingRegistrar keyMappings) {
+    public static void initialize(BalmClientRegistrars registrars) {
         ModKeyMappings.initialize();
     }
 
