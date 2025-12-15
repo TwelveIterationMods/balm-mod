@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import yourname.mods.yourmod.YourMod;
+import yourname.mods.yourmod.client.YourModClient;
 
 @Mod(YourMod.MOD_ID)
 public class ForgeYourMod {
