@@ -45,7 +45,7 @@ tasks.withType(JavaCompile).configureEach {
 
 tasks.named('jar', Jar) {
     manifest {
-        attributes["MixinConfigs"] = "${mod_id}.mixins.json,${mod_id}.api.mixins.json,${mod_id}.forge.mixins.json"
+        attributes["MixinConfigs"] = "${mod_id}.mixins.json,${mod_id}.forge.mixins.json"
     }
 }
 
