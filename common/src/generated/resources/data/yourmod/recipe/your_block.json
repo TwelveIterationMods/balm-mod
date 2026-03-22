@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": "minecraft:diamond",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "DDD",
+    "SSS",
+    "DDD"
+  ],
+  "result": {
+    "id": "yourmod:your_block"
+  }
+}
