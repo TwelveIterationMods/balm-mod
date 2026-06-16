@@ -15,6 +15,6 @@ public class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider lookup) {
-        valueLookupBuilder(ModItemTags.YOUR_TAG).add(ModItems.yourItem.asItem());
+        tag(ModItemTags.YOUR_TAG).add(ModItems.yourItem.asResourceKey());
     }
 }
