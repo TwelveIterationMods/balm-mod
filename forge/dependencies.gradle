@@ -1,5 +1,7 @@
 dependencies {
-    implementation(libs.balmForge) {
+    implementation(variantOf(libs.balmForge) {
+        classifier("")
+    }) {
         changing = libs.versions.balm.get().contains("SNAPSHOT")
     }
 }
