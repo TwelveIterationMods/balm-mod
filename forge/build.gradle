@@ -87,7 +87,7 @@ modrinth {
     projectId = findProperty("modrinth_project_id")
     versionType = "release"
     versionNumber = project.version + "+forge-" + project.minecraft_version
-    uploadFile = jar
+    uploadFile = reobfJar
     changelog = rootProject.file("CHANGELOG.md").text
     gameVersions = project.minecraft_versions.split(',').toList()
     syncBodyFrom = rootProject.file("modpage.md").text
@@ -96,3 +96,4 @@ modrinth {
         required.project "balm"
     }
 }
+tasks.modrinth.dependsOn(build)
