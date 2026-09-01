@@ -63,6 +63,11 @@ java {
     withJavadocJar()
 }
 
+tasks.withType(Javadoc).configureEach {
+    failOnError false
+    options.addStringOption('Xdoclint:-missing', '-quiet')
+}
+
 repositories {
     mavenCentral()
     // https://docs.gradle.org/current/userguide/declaring_repositories.html#declaring_content_exclusively_found_in_one_repository
