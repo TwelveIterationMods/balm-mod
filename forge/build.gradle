@@ -22,11 +22,6 @@ legacyForge {
         accessTransformers = ["src/main/resources/META-INF/accesstransformer.cfg"]
     }
 
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
-    }
-
     runs {
         client {
             client()
